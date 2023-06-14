@@ -38,7 +38,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="<?=$page?>"class="btn btn-success btn-flat">Save</button>
+                            <button onclick="return confirm('Save Data?')" type="submit" name="<?=$page?>"class="btn btn-success btn-flat">Save</button>
                         </div>
                         
                     </form>

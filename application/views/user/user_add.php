@@ -54,7 +54,7 @@
                             <small class="text-danger pl-4"><?= form_error("level"); ?></small>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-flat">Add</button>
+                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-success btn-flat">Add</button>
                             <button type="reset" class="btn btn-flat">Reset</button>
                         </div>
                     </form>

@@ -76,7 +76,13 @@
         <div class="box-header">
             <h3 class="">Manufacturing Order Data</h3>
             <div class="pull-right">
-               
+               <select name="" class="form-control" id="status">
+                <option value="0">Show All</option> 
+                <option value="1">Pending</option> 
+                <option value="2">In Production</option> 
+                <option value="3">Finished</option> 
+                <option value="4">Cancelled</option> 
+               </select>
             </div>
         </div>
         <div class="box-body table-responsive">
@@ -91,15 +97,17 @@
                         <th>Scheduled</th>
                         <th>Updated</th>
                         <th>Status</th>
+                        <th>Detail MO</th>
+                        <th>Detail BO</th>
                     </tr>
                 </thead>
-                <tbody>                  
-                    <?php
-                    $no = 1;
+                <tbody> <?php                  
+                $no = 1;
                     foreach($row->result() as $data => $hasil) { ?>
                     <tr >
+                     
                         <td><?=$no++?></td>   
-                        <td>
+                        <td href="<?= base_url("manufacture/edit/".$hasil->manufacture_id)?>" class="text">
                             <?=$hasil->manufacture_no ?>
                         </td>
                         <td><?=$hasil->bno ?></td>
@@ -107,13 +115,42 @@
                         <td><?=$hasil->created ?></td>
                         <td><?=$hasil->scheduled ?></td>
                         <td><?=$hasil->updated ?></td>
-                        <td><?=($hasil->status == 1 ? "Pending" : ($hasil->status == 2 ? "In Production" : ($hasil->status == 3 ? "Finished" : "Cancelled"))) ?></td>
-                        
+                        <td><?=($hasil->status == 1 ? "<p class='text-center bg-warning text-dark'>Pending</p>" : ($hasil->status == 2 ? "<p class='text-center bg-info'>In Production</p>" : ($hasil->status == 3 ? "<p class='text-center bg-success'>Finished</p>" : "<p class='text-center bg-danger'>Cancelled</p>"))) ?></td>
+                        <td class="text-center" width="100px">
+                            <a href="<?= base_url("manufacture/edit/".$hasil->manufacture_id)?>" class="btn btn-primary btn-xs">
+                                <i></i> Detail MO
+                            </a>
+                        </td>
+                        <td class="text-center" width="100px">
+                            <a href="<?= base_url("bom/insertcomponents/".$hasil->header_id)?>" class="btn btn-warning btn-xs">
+                                <i></i> Detail BOM
+                            </a>
+                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
-</section>
     
+</section>
+    <script>
+      $(document).ready(function() {
+          $("#status").change(function(){
+              status();
+          });
+      });
+
+      function status(){
+        var status = $("#status").val();
+        $.ajax({
+          url : "<?= base_url('Dashboard/filter') ?>",
+          data: "status=" + status,
+          success:function(data){
+            //$("#table1 tbody").html('<tr><td colspan="4" align="center">No Data</td></tr>')
+            $("#table1").html(data);
+          }
+        })
+      }
+
+    </script>

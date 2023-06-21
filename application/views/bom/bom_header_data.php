@@ -28,6 +28,7 @@
                         <th>BOM Number</th>
                         <th>Name</th>
                         <th>Product</th>
+                        <th>Quantity</th>
                         <th>BOM Status</th>
                         <th>Actions</th>
                         <th>Components</th>
@@ -43,6 +44,7 @@
                         <td><?=$hasil->bom_no ?></td>
                         <td><?=$hasil->name ?></td>
                         <td><?=$hasil->pname ?></td>
+                        <td><?=$hasil->qty ?></td>
                         <td><?=($hasil->status == 1 ? "Active"  : "Not Active") ?></td>
                         <td class="text-center" width="160px">
                             <a href="<?= base_url("bom/edit/".$hasil->header_id)?>" class="btn btn-primary btn-xs">

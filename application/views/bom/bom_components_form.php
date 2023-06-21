@@ -45,6 +45,7 @@
                         </div>
                         <div class="form-group" >
                             <label>Component Name</label>
+                           
                             <?php echo "<br>"?>
                             <?php echo form_dropdown('raw' , $raw , $selectedraw,
                             ['class' => 'form-control' , 'required' => 'required'] ) ?>
@@ -64,7 +65,6 @@
                         
                         <div class="form-group">
                         <button type="submit" name="<?=$page?>"class="btn btn-success btn-flat">Add Component</button>
-                            <button type="reset" class="btn btn-flat">Reset</button>
                         </div>
                     </form>
                 </div>

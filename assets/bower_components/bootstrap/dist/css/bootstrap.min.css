@@ -1380,7 +1380,7 @@ a.bg-primary:hover {
 	background-color: #286090;
 }
 .bg-success {
-	background-color: #dff0d8;
+	background-color: #48ff00;
 }
 a.bg-success:focus,
 a.bg-success:hover {
@@ -1394,14 +1394,14 @@ a.bg-info:hover {
 	background-color: #afd9ee;
 }
 .bg-warning {
-	background-color: #fcf8e3;
+	background-color: #fdd300;
 }
 a.bg-warning:focus,
 a.bg-warning:hover {
 	background-color: #f7ecb5;
 }
 .bg-danger {
-	background-color: #f2dede;
+	background-color: #ff0000;
 }
 a.bg-danger:focus,
 a.bg-danger:hover {

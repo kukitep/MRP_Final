@@ -5,9 +5,10 @@ class manufacture_model extends CI_Model {
 	
     public function get($id = null)
     {
-        $this->db->select('p_manufacture.*, bom_header.name as bname , bom_header.bom_no as bno , p_item.name as pname');
+        $this->db->select('p_manufacture.*, bom_header.name as bname , bom_header.bom_no as bno , p_item.name as pname ');
         $this->db->from('p_manufacture');
         $this->db->join('bom_header' , 'bom_header.header_id = p_manufacture.header_id');
+        //$this->db->join('bom_components' , 'bom_components.component_id = bom_header.component_id');
         $this->db->join('p_item' , 'bom_header.item_id = p_item.item_id');
 
         if($id != null){

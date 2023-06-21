@@ -34,7 +34,8 @@ class Item_model extends CI_Model {
     {
         $this->db->select('p_item.*, p_category.name as cname');
         $this->db->from('p_item'); 
-        $this->db->where('p_item.category_id' , '6');  
+        $this->db->where('p_item.category_id' , '11');  
+        $this->db->where('p_item.status' , '1');  
         $this->db->join('p_category' , 'p_category.category_id = p_item.category_id');
          
         if($id != null){              

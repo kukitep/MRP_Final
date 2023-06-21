@@ -44,6 +44,7 @@ class Bom extends CI_Controller {
 		$bom->bom_no = null;
 		$bom->name = null;
 		$bom->product = null;
+		$bom->qty = null;
 		$bom->description = null;
 		$bom->level = null;
 
@@ -184,6 +185,7 @@ class Bom extends CI_Controller {
 			$query_unit = $this->unit_model->get();
 			$query_item = $this->item_model->get_fp();
 			$query_raw = $this->item_model->get_raw();
+			//$qty = $this->bom_model->getstock($item_id)->row()->qty;
 			$bom = $query->row();
 			$bomno = $bom->bom_no;
 			$component = $querycomponents->row();
@@ -200,6 +202,8 @@ class Bom extends CI_Controller {
 				$unit[$unt->unit_id] = $unt->name;
 				;}					
 				$data = array(
+				//'qty' => $qty,
+				//'item_id' => $item_id,
 				'page' => 'addcom',
 				'row' => $bom,
 				'rows' => $component,

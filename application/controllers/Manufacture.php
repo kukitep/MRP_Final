@@ -34,6 +34,7 @@ class Manufacture extends CI_Controller {
 		$manufacture->manufacture_no = null;
 		$manufacture->description = null;
 		$manufacture->scheduled = null;
+		$manufacture->header_id = null;
 
 		$query_header = $this->bom_model->get_active();
 

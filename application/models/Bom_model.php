@@ -41,6 +41,19 @@ class bom_model extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+    public function getcomponent2($id = null)
+    {
+        $this->db->select('bom_components.*, p_item.name as pname , bom_header.header_id as headid , p_unit.name as uname');
+        $this->db->from('bom_components');
+        $this->db->join('p_item' , 'p_item.item_id = bom_components.item_id');
+        $this->db->join('bom_header' , 'bom_header.header_id = bom_components.header_id');
+        $this->db->join('p_unit' , 'p_unit.unit_id = bom_components.unit_id');
+        if($id != null){
+            $this->db->where('bom_components.header_id' , $id);           
+        }
+        $query = $this->db->get();
+        return $query;
+    }
 
     public function delete($id)
 	{
@@ -55,13 +68,14 @@ class bom_model extends CI_Model {
 
     public function add($post)
     {
+        
         $params = [
             'bom_no' => $post['bom_no'],
             'name' => $post['bom_name'],
             'item_id' => $post['item'],
             'description' => $post['deskripsi'],
             'status' => $post['status'],
-            
+            'qty' => $post['qty']
         ];
         $this->db->insert('bom_header',$params);
     }
@@ -75,6 +89,7 @@ class bom_model extends CI_Model {
             
         ];
         $this->db->insert('bom_components',$params);
+
     }
     
     public function edit($post)
@@ -84,7 +99,31 @@ class bom_model extends CI_Model {
             'name' => $post['bom_name'],
             'item_id' => $post['item'],
             'description' => $post['deskripsi'],
-            'status' => $post['status']
+            'status' => $post['status'],
+            'qty'=> $post['qty']
+        ];
+        $this->db->where('header_id' , $post['bom_id']);
+        $this->db->update('bom_header',$params);
+
+    }
+    public function getstock($id = NULL)
+    {
+       $this->db->from('p_item');
+       if($id != null){
+        $this->db->where('item_id' , $id);
+       }
+       $query = $this->db->get();
+       return $query;
+    }
+    public function delcomp($post)
+    {
+        $params = [
+            'bom_no' => $post['bom_no'],
+            'name' => $post['bom_name'],
+            'item_id' => $post['item'],
+            'description' => $post['deskripsi'],
+            'status' => $post['status'],
+            'qty'=> $post['qty']
         ];
         $this->db->where('header_id' , $post['bom_id']);
         $this->db->update('bom_header',$params);

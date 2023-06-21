@@ -15,6 +15,7 @@ class Auth extends CI_Controller {
 		{
 			$this->load->model('User_model');
 			$query = $this->User_model->login($post);
+			$rows= $query->row();
 			if($query->num_rows() > 0) {
 				$row = $query->row();
 				$params = array(
@@ -24,7 +25,8 @@ class Auth extends CI_Controller {
 				$this->session->set_userdata($params);
 				echo "<script> alert('Login Successful'); window.location='".base_url('dashboard')."'; </script>";
 			} else {
-				echo "<script> alert('Login Failed'); window.location='".base_url('auth/login')."'; </script>";
+				echo $query->row();
+				//echo "<script> alert('Login Failed'); window.location='".base_url('auth/login')."'; </script>";
 			}
 		} 
 	}

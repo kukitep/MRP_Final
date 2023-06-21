@@ -39,6 +39,10 @@
                             ['class' => 'form-control' , 'required' => 'required']) ?>
                         </div>
                         <div class="form-group" >
+                            <label>Quantity</label>
+                            <input type="number" name="qty" class="form-control" value="<?=$row->qty?>" ></input>
+                        </div>
+                        <div class="form-group" >
                             <label>Description</label>
                             <textarea name="deskripsi" class="form-control" value="<?=$row->description?>" ><?= $row->description?></textarea>
                         </div>
@@ -51,9 +55,14 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="<?=$page?>"class="btn btn-success btn-flat">Save</button>
-                            <button type="reset" class="btn btn-flat">Reset</button>
+                            <button type="submit" name="<?=$page?>"class="btn btn-success btn-flat">Save</button>          
+                        <a href="<?= base_url("bom/insertcomponents/".$row->header_id)?>" class="btn btn-warning btn-flat">
+                             <i class=""></i> Detail Components
+                        </a>                         
                         </div>
+                        
+                                          
+                       
                     </form>
                 </div>
             </div>

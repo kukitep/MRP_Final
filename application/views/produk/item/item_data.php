@@ -27,6 +27,7 @@
                         <th>No</th>
                         <th>Name</th>
                         <th>Category</th>
+                        <th>Quantity</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -39,6 +40,7 @@
                         <td><?=$no++?></td>
                         <td><?=$hasil->name ?></td>
                         <td><?=$hasil->cname ?></td>
+                        <td><?=$hasil->qty ?></td>
                         <td><?=($hasil->status == 1 ? "Active"  : "Not Active") ?></td>
                         <td class="text-center" width="160px">
                             <a href="<?= base_url("item/edit/".$hasil->item_id)?>" class="btn btn-primary btn-xs">
